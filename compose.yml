@@ -1,6 +1,6 @@
 services:
   server:
-    image: edlingaona/<your-image-name>:latest
+    image: edlingaona/calculations-mcp:latest
     build:
       context: .
       dockerfile: Dockerfile
@@ -10,7 +10,7 @@ services:
       - ./migration/main.db:/app/migration/main.db
       - ./.env:/app/.env
       - ./public:/app/public
-    env_file: ".env"
+    env_file: "./.env"
     environment:
       - GO_PORT=${GO_PORT}
       - JWT_SECRET=${JWT_SECRET}
