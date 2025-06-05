@@ -99,12 +99,11 @@ func (c *Configurator) Start() {
 }
 
 func (c *Configurator) StartMCP() {
-	port := os.Getenv("GO_MCP_PORT")
-	if port == "" {
-		port = "5000" // Default port if not set
-	}
+	log.Println("Starting MCP server...")
+	httpServer := server.NewSSEServer(
+		c.CalculatorMCPAdapter.MCPServer,
+	)
 
-	log.Printf("Starting MCP server on port %s", port)
-	httpServer := server.NewSSEServer(c.CalculatorMCPAdapter.MCPServer)
-	log.Fatal(httpServer.Start(":" + port))
+	c.root.Any("/sse", echo.WrapHandler(httpServer.SSEHandler()))
+	c.root.Any("/message", echo.WrapHandler(httpServer.MessageHandler()))
 }

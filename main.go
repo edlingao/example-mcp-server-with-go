@@ -27,6 +27,6 @@ func main() {
 	config.AddCalculatorAPI()
 	config.AddCalculatorWeb()
 	config.AddCalculatorMCP()
-	go config.StartMCP()
+	config.StartMCP()
 	config.Start()
 }
