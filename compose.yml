@@ -7,7 +7,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./migration/main.db:/app/migration/main.db
+      - ./db/main.db:/app/db/main.db
       - ./.env:/app/.env
       - ./public:/app/public
     env_file: "./.env"
